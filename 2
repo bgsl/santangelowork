@@ -1,0 +1,30 @@
+float ballX = 30;
+float ballY = 30;
+float ballSize = 100;
+int i;
+
+
+
+void setup(){
+  size(600, 600);
+}
+void draw() 
+
+{
+  fill(0);
+  rect(0,0,width, height);
+  i = 0;
+  while (i < 300) {
+    fill(255);
+    drawBall();
+    println(ballX+i);
+    i = i + 1 ;
+  }
+
+
+}
+
+void drawBall() {
+fill(i,mouseX,100);
+  ellipse(random(0,width)+i, random(0,height)+i, 30,30);
+}
