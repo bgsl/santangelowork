@@ -1,0 +1,107 @@
+// ball position and size
+float ballX;
+float ballY;
+float ballSize;
+//ball speed
+float speedX;
+float speedY;
+
+
+// button position
+
+boolean rectPressed = false;
+
+  float rectX;
+float rectY; 
+float rectSize; 
+
+
+
+
+void setup() {
+rectX = width/2;
+rectY = height/2;
+rectSize = 100;
+
+  size(600, 600);
+  ballX = width/2;
+  ballY = height/2;
+
+  speedX = random(-5, 5);
+  speedY = random(-5, 5);
+
+  ballSize = 30;
+  
+
+}
+
+void draw() {
+  
+   
+//button action
+  if (rectPressed) {
+    fill(mouseX);
+  } else {
+    fill(255);
+
+// color mapping
+    float r = map(ballX, 0, width, 0, 255);
+    float g = map(ballY, 0, height, 0, 255);
+
+
+
+    fill(r, g, g);
+    ellipse(ballX, ballY, mouseX, mouseY);
+    ellipse(ballX+100, ballY+100, mouseX, mouseY);
+    ellipse(ballX-50, ballY-100, mouseX, mouseY);
+
+
+    stroke(r, g, g);
+    fill(255);
+    rectMode(CENTER);
+    rect(width/2, height/2, rectSize, rectSize);
+
+    map(ballX, 600, 300, 600, 300);
+    map(ballY, 600, 300, 600, 300);
+
+    ballX += speedX;
+    ballY += speedY;
+
+    if (ballX > width - ballSize/2 || ballX < ballSize/2) {
+      ballX -= speedX;
+      speedX = -speedX;
+    }
+
+    if (ballY > height - ballSize/2 || ballY < ballSize/2) {
+      ballY -= speedY;
+      speedY = -speedY;
+    }
+  }
+    fill(40,40,40);
+   
+  text("freeze " , width/2-20, height/2+5);
+}
+
+
+
+void mousePressed() {
+  //ballX = mouseX;
+  //ballY = mouseY;
+
+  //speedX = random(-5, 5);
+  //speedY = random(-5, 5);
+
+  float distance = dist(mouseX, mouseY, rectX, rectY);
+
+  if (distance < rectSize/2) {
+    rectPressed = !rectPressed;
+  }
+}
+
+
+
+void mouseDragged() {
+
+  speedX = random(-5, 20);
+  speedY = random(-5, 20);
+}
