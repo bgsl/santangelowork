@@ -1,0 +1,54 @@
+int x, y;
+int shapeSize = 10;
+int value = 0;
+
+void setup() {
+  size(500, 500);
+  background(255, 255, 255);
+}
+
+void draw() {
+  cursor(CROSS);
+  if (keyPressed) {
+    if (key == 'e') {
+      drawEllipse(mouseX,mouseY);
+    }
+    if (key == 's') {
+      drawSquare(mouseX,mouseY);
+    }
+  }
+}
+
+void drawSquare(float x, float y) {
+  rectMode(CENTER);
+  x = mouseX;
+  y = mouseY;
+  fill (x, y, x*y);
+  rect(x, y, value*.5, value*.5);
+  noStroke();
+}
+
+void drawEllipse(float x, float y) {
+  x = mouseX;
+  y = mouseY;
+  fill (x, y, x*y);
+  ellipse(x, y, value, value);
+  noStroke();
+}
+
+//CLEAR FRAME
+void mouseClicked() {
+  background (255, 255, 255);
+}
+
+//CHANGE BACKGROUND COLOR
+void mouseDragged() {
+  background (x, y, x*y);
+}
+
+//CHANGE SIZE
+void mouseWheel() {
+  value = value + 1;
+  if (value > 255) 
+    value = 0;
+}
